@@ -1,11 +1,18 @@
 const Joi        = require('joi');  
 const mongoose   = require('mongoose');  
 const Schema     = mongoose.Schema;  
-const createHash = require('./createhash');
-const schema = require('./schema');   
+const createHash = require('./createhash');  
 const hashLen    = 8; 
 // Local machine? Set baseUrl to 'http://localhost:3000'
 const baseUrl    = process.env.BASE_URL || 'http://localhost:3000';
+
+const redirSchema = new Schema({  
+  shortUrl: String,
+  url: String,
+  createdAt: Date
+});
+
+const Redir = mongoose.model('Redir', redirSchema);  
 
 module.exports = [  
     {
